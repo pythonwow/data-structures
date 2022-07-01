@@ -14,9 +14,6 @@ class LinkedList:
         self.head = None
         self.len = 0
 
-    def is_head(self, node):
-        return True if node is self.head else False
-
     def find_node(self, value):
         node = self.head
         while node.value is not value:
@@ -87,4 +84,3 @@ class LinkedList:
                 self.head = node
             prev = node
             node = next
-#zmiana
