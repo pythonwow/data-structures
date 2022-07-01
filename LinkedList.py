@@ -1,3 +1,5 @@
+import copy
+
 class Node:
 
     def __init__(self, value, next=None):
@@ -13,14 +15,6 @@ class LinkedList:
     def __init__(self):
         self.head = None
         self.len = 0
-
-    def find_node(self, value):
-        node = self.head
-        while node.value is not value:
-            node = node.next
-            if node is None:
-                return None
-        return node
 
     def append(self, value):
         if not self.head:
@@ -55,24 +49,9 @@ class LinkedList:
         if node.next:
             self.display(node=node.next)
 
-    def get_reversed(self):
-        '''
-        Returns object of reversed LinkedList instance.
-        '''
-        reversed = LinkedList()
-        counter = self.len - 1
-        while counter > 0:
-            node = self.head
-            for i in range(counter):
-                if node.next is not None:
-                    node = node.next
-            reversed.append(node.value)
-            counter -= 1
-        return reversed
-
     def reverse(self):
         '''
-        Reversing LinkedList instance.
+        Reverses LinkedList.
         '''
         node = self.head
         while node is not None:
@@ -84,3 +63,13 @@ class LinkedList:
                 self.head = node
             prev = node
             node = next
+
+    def get_reversed(self):
+        '''
+        Returns object of reversed LinkedList instance.
+        '''
+        result = copy.deepcopy(self)
+        result.reverse()
+        return result
+
+
