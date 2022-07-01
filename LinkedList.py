@@ -87,3 +87,4 @@ class LinkedList:
                 self.head = node
             prev = node
             node = next
+#zmiana
