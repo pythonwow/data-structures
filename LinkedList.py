@@ -71,3 +71,11 @@ class LinkedList:
         result = copy.deepcopy(self)
         result.reverse()
         return result
+
+    def get_values_list(self):
+        node = self.head
+        result = []
+        while node:
+            result.append(node.value)
+            node = node.next
+        return result

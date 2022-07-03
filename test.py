@@ -1,5 +1,8 @@
 import unittest
 from LinkedList import LinkedList
+from SortedLinkedList import SortedLinkedList
+from DoublyLinkedList import DoublyLinkedList
+from SortedDoublyLinkedList import SortedDoublyLinkedList
 from BinaryTree import BinaryTree
 
 
@@ -33,21 +36,44 @@ class TestLinkedList(unittest.TestCase):
         # checking if reverse and get_reversed actually do their work
         reversed_object = linked_list.get_reversed()
         linked_list.reverse()
-        list_of_values_same_instance = []
-        list_of_values_object_copy = []
-        node = linked_list.head
-        while node:
-            list_of_values_same_instance.append(node.value)
-            node = node.next
-        node = reversed_object.head
-        while node:
-            list_of_values_object_copy.append(node.value)
-            node = node.next
+        list_of_values_same_instance = linked_list.get_values_list()
+        list_of_values_object_copy = reversed_object.get_values_list()
 
         self.assertEqual(list_of_values_same_instance, [5, 4, 3, 2], "Error during reversing the LinkedList instance.")
         self.assertEqual(list_of_values_object_copy, [5, 4, 3, 2], "Error during returns of reversed LinkedList copy.")
-        self.assertFalse(list_of_values_object_copy is list_of_values_same_instance, "Get reversed does not return new instance.")
+        self.assertFalse(list_of_values_object_copy is list_of_values_same_instance, "Return same instance.")
 
+class TestSortedLinkedList(unittest.TestCase):
+    def test_1_sorting(self):
+        sorted_ll = SortedLinkedList()
+        values = [3, 5, 1, 2, 4]
+        for val in values:
+            sorted_ll.insert(val)
+        self.assertEqual(sorted_ll.get_values_list(), [1, 2, 3, 4, 5], "Wrong sorted values.")
+
+
+class TestDoublyLinkedList(unittest.TestCase):
+    def test_1_append(self):
+        values = [1, 2, 3, 4, 5]
+        doubly_ll = DoublyLinkedList()
+        for val in values:
+            doubly_ll.append(val)
+        self.assertEqual(doubly_ll.head.next.previous, doubly_ll.head, "Wrong previous connection.")
+        doubly_ll.delete(2)
+        self.assertEqual(doubly_ll.head.next.previous, doubly_ll.head, "Wrong previous connection.")
+        self.assertEqual(doubly_ll.head.next.value, 3, "Wrong next connection after delete.")
+
+
+class TestSortedDoublyLinkedList(unittest.TestCase):
+    def test_1_insert(self):
+        sd_ll = SortedDoublyLinkedList()
+        values = [3, 2, 5, 4, 1]
+        for val in values:
+            sd_ll.insert(val)
+        self.assertEqual(sd_ll.head.next.previous, sd_ll.head, "Wrong previous connection.")
+        sd_ll.delete(2)
+        self.assertEqual(sd_ll.head.next.value, 3, "Error during delete handling.")
+        self.assertEqual(sd_ll.head.next.previous.value, 1, "Error during delete handling.")
 
 class TestBinaryTree(unittest.TestCase):
 
@@ -80,5 +106,3 @@ class TestBinaryTree(unittest.TestCase):
         self.assertEqual(tree.root.right.right.value, 10, mssg)
         # delete node which does not exist
         self.assertIsNone(tree.delete(99), mssg)
-
-

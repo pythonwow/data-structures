@@ -27,11 +27,5 @@ class SortedDoublyLinkedList(DoublyLinkedList):
                 self.len += 1
                 return
 
-x = SortedDoublyLinkedList()
-x.insert(2)
-x.insert(3)
-x.insert(5)
-x.insert(1)
-x.insert(4)
-x.display()
+
 
