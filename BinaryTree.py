@@ -101,6 +101,33 @@ class BinaryTree:
         elif parent.right == node:
             parent.right.value = succ.value
 
+    def get_preorder(self, node=False, result=[]):
+        '''
+        :param node: Default self.root
+        :param result: Empty list will be filled with preordered values
+        :return: List with all the preorder sorted values of the BinaryTree
+        '''
+        if node == False:
+            node = self.root
+        if node is None:
+            return
+        print(node.value)
+        result.append(node.value)
+        self.get_preorder(node.left)
+        self.get_preorder(node.right)
+        return result
+
+
+x = BinaryTree()
+values = [5, 3, 6, 2, 4, 6, 10, 11, 10, 0, 1]
+for value in values:
+    x.insert(value)
+y = x.get_preorder()
+
+
+
+
+
 
 
 
