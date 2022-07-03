@@ -104,14 +104,5 @@ class BinaryTree:
 
 
 
-st = timer()
-tree = BinaryTree()
-values = [5, 3, 6, 2, 4, 6, 10, 11, 10, 0, 1]
-tree.insert(values)
-tree.delete(3)
-et = timer()
-diff = (et - st)
-print(timedelta(seconds=et-st))
-
 
 
