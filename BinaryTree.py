@@ -19,7 +19,6 @@ class Node:
 
 
 class BinaryTree:
-    ''''polacz delete i todelete w jedną funkcję'''
 
     def __init__(self):
         self.root = None
