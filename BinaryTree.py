@@ -24,18 +24,6 @@ class BinaryTree:
     def __init__(self):
         self.root = None
 
-    # @staticmethod
-    # def get_place_to_insert(node, value):
-    #     while isinstance(node, Node):
-    #         if value <= node.value:
-    #             if node.left is None:
-    #                 return node, True
-    #             node = node.left
-    #         elif value > node.value:
-    #             if node.right is None:
-    #                 return node, False
-    #             node = node.right
-
     def insert(self, values):
         def get_place_to_insert(node, value):
             while isinstance(node, Node):
