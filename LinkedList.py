@@ -71,5 +71,3 @@ class LinkedList:
         result = copy.deepcopy(self)
         result.reverse()
         return result
-
-
