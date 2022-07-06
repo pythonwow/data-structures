@@ -101,28 +101,52 @@ class BinaryTree:
         elif parent.right == node:
             parent.right.value = succ.value
 
-    def get_preorder(self, node=False, result=[]):
+    def get_preorder(self, node=False, result=None):
         '''
-        :param node: Default self.root
-        :param result: Empty list will be filled with preordered values
-        :return: List with all the preorder sorted values of the BinaryTree
+        :return: List of preorder traversal values
         '''
+        if result is None:
+            result = []
         if node == False:
             node = self.root
         if node is None:
             return
-        print(node.value)
         result.append(node.value)
-        self.get_preorder(node.left)
-        self.get_preorder(node.right)
+        self.get_preorder(node.left, result=result)
+        self.get_preorder(node.right, result=result)
+        return result
+
+    def get_inorder(self, node=False, result=None):
+        '''
+        :return: List of inorder traversal values
+        '''
+        if result is None:
+            result = []
+        if node == False:
+            node = self.root
+        if node is None:
+            return
+        self.get_inorder(node.left, result=result)
+        result.append(node.value)
+        self.get_inorder(node.right, result=result)
+        return result
+
+    def get_postorder(self, node=False, result=None):
+        '''
+        :return: List of postorder traversal values
+        '''
+        if result is None:
+            result = []
+        if node == False:
+            node = self.root
+        if node is None:
+            return
+        self.get_inorder(node.left, result=result)
+        self.get_inorder(node.right, result=result)
+        result.append(node.value)
         return result
 
 
-x = BinaryTree()
-values = [5, 3, 6, 2, 4, 6, 10, 11, 10, 0, 1]
-for value in values:
-    x.insert(value)
-y = x.get_preorder()
 
 
 
